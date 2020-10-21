@@ -1,10 +1,6 @@
 package Principal;
 
-import Mensajes.Mapa;
 import Mensajes.Send_Message;
-import Mensajes.Sendto;
-import Server.CLIENTE;
-import Server.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
