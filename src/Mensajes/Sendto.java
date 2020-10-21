@@ -13,7 +13,7 @@ public class Sendto{
     static String answer;
     private static Object Exception;
 
-    public static String display(int puertoin){
+    public static String display(int puertoin) {
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -28,19 +28,19 @@ public class Sendto{
 
         Button acceptButton = new Button("Aceptar");
 
-        acceptButton.setOnAction(e ->{
+        acceptButton.setOnAction(e -> {
             answer = sendto.getText();
-            try{
+            try {
                 int porto = Integer.parseInt(answer);
                 window.close();
-            }catch (Exception i){
+            } catch (Exception i) {
                 sendto.setText("Caracteres Invalidos");
-                i.printStackTrace();
+                throw new IllegalArgumentException("Caracteres Invalidos");
             }
         });
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(label,sendto,acceptButton);
+        layout.getChildren().addAll(label, sendto, acceptButton);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
