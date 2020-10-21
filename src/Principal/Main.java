@@ -1,31 +1,20 @@
 package Principal;
-/**
- * Aplicacion de mensajeria usando Sockets y javaFx
- * @instituto TECNOLOGICO DE COSTA
- * @CARRERA INGENIERIA EN COMPUTADORES
- * @CURSO  ALGORITMO Y ESTRUCTURA DE DATOS
- * @Profesor JOSE ISAAC RAMIREZ HERRERA
- * @author <a href="joanjuz@gmail.com">Joan Ugalde Zarate</a>
- * @version 1.0
- * Se utilizo Gitub
- *
- *
- */
-import Server.CLIENTE;
+
+import Mensajes.Send_Message;
 import Server.Client;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.net.Socket;
 
 public class Main extends Application {
+    private static Logger log = LoggerFactory.getLogger(Main.class);
     public static Stage window;
     private static Socket s;
     public boolean cerrar = false;
@@ -36,20 +25,25 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        try {
+            try {
+            ip = InetAddress.getByName("localhost");
 
-        ip = InetAddress.getByName("localhost");
+            s = new Socket(ip, 4000);
 
-        s = new Socket(ip,4000);
+            Thread cliente = new Client(s);
+            cliente.start();
+            }catch(Exception e){
+                throw new IllegalAccessException("No se ha podido conectar con el servidor");}
 
-        Thread cliente = new Client(s);
-        cliente.start();
-
-
-        window = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("Intefaz.fxml"));
-        window.setTitle("Mensajeria");
-        window.setScene(new Scene(root, 780, 540));
-        window.show();
+                window = primaryStage;
+                Parent root = FXMLLoader.load(getClass().getResource("Intefaz.fxml"));
+                window.setTitle("Mensajeria");
+                window.setScene(new Scene(root, 780, 540));
+                window.show();
+        }catch (IllegalAccessException e){
+            log.error(e.getMessage(),e);
+        }
             }
     public static void closed(){
         window.close();
