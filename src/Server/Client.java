@@ -39,10 +39,14 @@ public class Client extends Thread {
         server.writeUTF(port+"");
     }
     public static void set_message(String tosend) throws IOException, ClassNotFoundException {
-        server.writeUTF(tosend);
-        String received = message.readUTF();
-        System.out.println(received);
-        recibe = received;
+        try {
+            server.writeUTF(tosend);
+            String received = message.readUTF();
+            System.out.println(received);
+            recibe = received;
+        }catch (Exception e){
+            throw new IllegalArgumentException("Mensaje invalido");
+        }
     }
     public static String Chatbox(){
         return recibe;
