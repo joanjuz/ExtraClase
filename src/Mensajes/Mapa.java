@@ -106,35 +106,4 @@ public class Mapa {
         maps.add(between_users);
         return maps;
     }
-        /*public static java.util.ArrayList<Socket> getkeys(Socket client1,Socket client2){
-            if (between_users.containsKey(client1)) {
-                if (between_users.get(client1).contains(client2)) {
-                    users(client1, client2, Message);
-                } else {
-                    java.util.List<Socket> user2 = new ArrayList<>();
-                    user2 = between_users.get(client1);
-                    user2.add(client2);
-                    between_users.put(client1, user2);
-                    users(client1, client2, Message);
-                }
-            } else if (between_users.containsKey(client2)) {
-                if (between_users.get(client2).contains(client1)) {
-                    users(client2, client1, Message);
-                } else {
-                    java.util.List<Socket> user2 = new ArrayList<>();
-                    user2 = between_users.get(client2);
-                    user2.add(client1);
-                    between_users.put(client2, user2);
-                    users(client1, client2, Message);
-                }
-            } else {
-                java.util.List<Socket> user2 = new ArrayList<>();
-                user2.add(client2);
-                between_users.put(client1, user2);
-                users(client1, client2, Message);
-            }
-
-        }
-         */
-
-    }
+}
